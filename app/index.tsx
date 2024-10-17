@@ -6,6 +6,7 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import Animated, { FadeIn , FadeInDown , FadeInRight , FadeInLeft } from 'react-native-reanimated';
 import getDate from '@/constants';
 import Wellcom from '@/components/wellcom';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function index() {
 
@@ -39,6 +40,17 @@ export default function index() {
     {/*Приветствие*/}
     <Wellcom />
 
+    <Animated.View className='pt-4 mx-5' entering={FadeInRight.delay(250).springify()}>
+      <LinearGradient
+      colors={['#FF00B8', '#B60083', '#C0008A']}
+      className='h-[150px] w-[100%] rounded-lg border-[2px] border-[#222222]'
+      >
+        <Animated.Text entering={FadeIn.delay(350).springify()} className='font-bold text-xl my-auto text-center text-white'>
+          "Запланировал — выполнил. Каждый шаг приближает тебя к цели!"
+        </Animated.Text>
+      </LinearGradient>
+    </Animated.View>
+
       <Animated.View entering={FadeInLeft.delay(350).springify()} className='mx-5 pt-5 flex-row'>
         <TextInput placeholder='Добавить задачу!' onChangeText={setTask} value={task} className='p-4 w-[83%] rounded-l-md border-[#222222] border-[1px] text-white'/>
         <TouchableOpacity className='p-4 bg-priamary rounded-r-md' onPress={addTask}>
@@ -50,7 +62,7 @@ export default function index() {
 
       {/*Список дел*/}
       <View className='mx-5'>
-        <Animated.Text entering={FadeInLeft.delay(450).springify()} className='font-bold text-xl text-priamary mb-4'>Задачи</Animated.Text>
+        <Animated.Text entering={FadeInLeft.delay(450).springify()} className='font-bold text-xl text-priamary mb-4'>Ваши задачи</Animated.Text>
       </View>
 
     <FlatList className='w-full h-full mx-3' showsHorizontalScrollIndicator={false} data={tasks} renderItem={({item})=> (
